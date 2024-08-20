@@ -5,13 +5,12 @@ import { Logo, Input, Button } from "./index";
 import { useDispatch } from "react-redux";
 import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
-import { data } from "autoprefixer";
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
-  const { error, setError } = useState("");
+  const [ error, setError ] = useState("");
 
   const login = async (data) => {
     setError("");
@@ -35,7 +34,7 @@ function Login() {
       >
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
-            <Logo width="100%" />
+            <Logo width="100px" />
           </span>
         </div>
         <h2 className="text-center text-2xl font-bold leading-tight">

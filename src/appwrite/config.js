@@ -7,6 +7,10 @@ export class Service {
   bucket;
 
   constructor() {
+    this.initializeClient();
+  }
+
+  initializeClient() {
     this.client
       .setEndpoint(conf.appwriteUrl)
       .setProject(conf.appwriteProjectId);
@@ -14,7 +18,7 @@ export class Service {
     this.bucket = new Storage(this.client);
   }
 
-  async createPost({ title, slug, content, featreImage, status, userId }) {
+  async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
       return await this.databases.createDocument(
         conf.appwriteDatabaseId,
@@ -25,7 +29,7 @@ export class Service {
           content,
           status,
           userId,
-          featreImage,
+          featuredImage,
         }
       );
     } catch (error) {
@@ -34,7 +38,7 @@ export class Service {
     }
   }
 
-  async updatePost(slug, { title, content, featreImage, status }) {
+  async updatePost(slug, { title, content, featuredImage, status }) {
     try {
       return await this.databases.updateDocument(
         conf.appwriteDatabaseId,
@@ -43,7 +47,7 @@ export class Service {
         {
           title,
           content,
-          featreImage,
+          featuredImage,
           status,
         }
       );

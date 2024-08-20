@@ -31,6 +31,14 @@ export class AuthService {
     }
   }
 
+  async getCurrentUser() {
+    try {
+      return await this.account.get();
+    } catch (error) {
+      console.error("Error getting current user:", error);
+      throw error;
+    }
+  }
   async login({ email, password }) {
     try {
       await this.account.createEmailPasswordSession(email, password);
@@ -40,16 +48,6 @@ export class AuthService {
     }
   }
 
-  async getCurrentUser() {
-    try {
-      return await this.account.get();
-    } catch (error) {
-      console.error("Error getting current user:", error);
-      throw error;
-    }
-  }
-
- 
   async logout() {
     try {
       await this.account.deleteSessions();
